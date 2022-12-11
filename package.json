@@ -1,0 +1,60 @@
+{
+  "name": "nuxt-sitemap-module",
+  "version": "1.0.0",
+  "description": "Lightweight and fast Sitemap generator for Nuxt.",
+  "author": "Ivo Dolenc",
+  "license": "MIT",
+  "repository": "ivodolenc/nuxt-sitemap-module",
+  "homepage": "https://github.com/ivodolenc/nuxt-sitemap-module",
+  "funding": "https://github.com/sponsors/ivodolenc",
+  "type": "module",
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "types": "./dist/types.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "nuxt-robots",
+    "nuxt-sitemap",
+    "nuxt-robots-module",
+    "nuxt-sitemap-module",
+    "sitemap-module",
+    "robots-module",
+    "sitemap",
+    "robots"
+  ],
+  "scripts": {
+    "dev": "nuxt dev playground",
+    "build:play": "nuxt build playground",
+    "generate:play": "nuxt generate playground",
+    "preview:play": "nuxt preview playground",
+    "build:module": "nuxt-module-build",
+    "prepublishOnly": "npm run build:module",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.2.1",
+    "@types/micromatch": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.46.0",
+    "@typescript-eslint/parser": "^5.46.0",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "nuxt": "^3.0.0",
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4"
+  },
+  "eslintConfig": {
+    "extends": "./.config/eslint.config.cjs"
+  },
+  "prettier": "./.config/prettier.config.cjs"
+}
