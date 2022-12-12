@@ -1,4 +1,3 @@
-import { existsSync, mkdirSync } from 'node:fs'
 import { defineNuxtModule } from '@nuxt/kit'
 import { generateSitemap, generateRobots } from './utils'
 import type { ModuleOptions, ModuleDefaults } from './types'
@@ -28,14 +27,14 @@ export default defineNuxtModule<ModuleOptions>({
   },
 
   setup(moduleOptions, nuxt) {
-    const publicDir = `${nuxt.options.srcDir}/${nuxt.options.dir.public}`
+    const buildDir = `${nuxt.options.buildDir}/dist/client`
     let appUrl: string | undefined = nuxt.options.devServer.url
 
     if (nuxt.options._build) appUrl = nuxt.options.app.baseURL
     if (nuxt.options._generate) appUrl = moduleOptions.siteUrl
 
     const options: ModuleDefaults = {
-      publicDir,
+      buildDir,
       appUrl,
       pages: [],
       ...moduleOptions
@@ -46,8 +45,6 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     nuxt.hooks.hookOnce('nitro:build:before', () => {
-      if (!existsSync(publicDir)) mkdirSync(publicDir, { recursive: true })
-
       generateSitemap(options)
       if (options.robots) generateRobots(options)
     })

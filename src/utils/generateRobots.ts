@@ -57,7 +57,7 @@ const generateContent = (
  * @since 1.0.0
  */
 export const generateRobots = (options: ModuleDefaults) => {
-  const { publicDir, appUrl } = options
+  const { buildDir, appUrl } = options
 
   const robots = options.robots as RobotsOptions
   const rules = robots.rules as RobotsRules[]
@@ -71,7 +71,7 @@ export const generateRobots = (options: ModuleDefaults) => {
   if (!rules.length) rules.push(defaultRules)
   if (sitemaps && !sitemaps.length) sitemaps.push('sitemap.xml')
 
-  const robotsFile = `${publicDir}/${fileName}`
+  const robotsFile = `${buildDir}/${fileName}`
   const robotsContent = generateContent(rules, sitemaps, appUrl)
 
   return writeFileSync(robotsFile, robotsContent)
