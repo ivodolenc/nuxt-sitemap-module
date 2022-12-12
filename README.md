@@ -35,6 +35,18 @@ npm i -D nuxt-sitemap-module
 
 That's it! Start developing your app!
 
+## Concept
+
+The module automatically generates dynamic `sitemap.xml` and `robots.txt` files.
+
+It works in all modes, `dev`, `build`, and `static`. This can be really useful for testing and previewing before deployment. For simpler projects, just enable the module and that's it, there is no need for additional configuration.
+
+Also, the generated files will be placed directly in the Nuxt `build` directory to avoid frequent content revisions by Git. This means there will be no changes or extra files to deal with in the `public/` directory which is awesome.
+
+#### NOTE
+
+If you currently have _sitemap.xml_ and _robots.txt_ files in your project, feel free to backup/remove them as they will be automatically generated.
+
 ## Options
 
 The module is written in TypeScript so it improves the development experience with detailed descriptions, examples, and auto-hinted configuration right in the code editor.
@@ -76,9 +88,9 @@ Defines the site URL for `production`.
 
 This is necessary since Nuxt can't automatically detect the site URL during `SSG`.
 
-In `build` mode it is set to `nuxt.options.app.baseURL`.
-
 In `development` mode it is set to `nuxt.options.devServer.url`.
+
+In `build` mode it is set to `nuxt.options.app.baseURL`.
 
 ```js
 {

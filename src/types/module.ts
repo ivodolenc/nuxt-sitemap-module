@@ -22,9 +22,9 @@ export interface ModuleOptions {
    *
    * This is necessary since Nuxt can't automatically detect the site URL during `SSG`.
    *
-   * In `build` mode it is set to `nuxt.options.app.baseURL`.
-   *
    * In `development` mode it is set to `nuxt.options.devServer.url`.
+   *
+   * In `build` mode it is set to `nuxt.options.app.baseURL`.
    *
    * @example
    *
@@ -148,11 +148,13 @@ export interface ModuleOptions {
  */
 export interface ModuleDefaults extends ModuleOptions {
   /**
-   * Automatically specifies path to the `/public` directory.
+   * Automatically specifies path to the Nuxt `build` directory.
    *
-   * @default '<rootDir>/public'
+   * The generated files will be placed directly in the `build` directory to avoid frequent content revisions by Git. This means there will be no changes or extra files to deal with in the `public/` directory which is awesome.
+   *
+   * @default '/<rootDir>/.nuxt/dist/client'
    */
-  publicDir: string
+  buildDir: string
   /**
    * Dynamically specifies the `current` site url.
    *

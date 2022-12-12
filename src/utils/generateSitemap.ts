@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import micromatch from 'micromatch'
 import type { ModuleDefaults, RouteOptions } from '../types'
 
@@ -91,10 +91,12 @@ const generateContent = (options: ModuleDefaults) => {
  * @since 1.0.0
  */
 export const generateSitemap = (options: ModuleDefaults) => {
-  const { fileName, publicDir } = options
+  const { buildDir, fileName } = options
 
-  const sitemapFile = `${publicDir}/${fileName}`
+  const sitemapFile = `${buildDir}/${fileName}`
   const sitemapContent = generateContent(options)
+
+  if (!existsSync(buildDir)) mkdirSync(buildDir, { recursive: true })
 
   return writeFileSync(sitemapFile, sitemapContent)
 }
